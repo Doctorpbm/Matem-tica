@@ -23,6 +23,8 @@
       <h1>Conquistas por Setores</h1>
     </div>
 
+    <div class="menu-toggle">&#9776;</div>
+    
     <div class="menu-links">
       <a href="index.html">Início</a>
       <a href="fases.html">Setores</a>
@@ -34,6 +36,14 @@
   <div id="setores" style="margin-top: 80px; width: 100%; display: flex; flex-direction: column; align-items: center;"></div>
 
   <script>
+
+    const toggleBtn = document.querySelector(".menu-toggle");
+    const menuLinks = document.querySelector(".menu-links");
+  
+    toggleBtn.addEventListener("click", () => {
+      menuLinks.classList.toggle("show");
+    });
+    
     const setores = [
       { nome: "ADM", chave: "resultadosADM" },
       { nome: "RH", chave: "resultadosRH" },
