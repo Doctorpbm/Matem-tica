@@ -112,32 +112,6 @@ header {
     margin-top: 10px;
 }
 
-/* Responsividade: tablets */
-@media (max-width: 768px) {
-    .menu-links {
-        flex-direction: column;
-        padding-right: 0;
-    }
-
-    .menu-links a {
-        margin-bottom: 10px;
-    }
-
-    .titulo {
-        font-size: 18px;
-    }
-
-    .question {
-        width: 90%;
-        margin: 80px auto 20px;
-        padding: 15px;
-    }
-
-    .seta-topo-esquerda {
-        top: 20px;
-        left: 20px;
-    }
-}
 
 /* Responsividade: celulares pequenos */
 @media (max-width: 480px) {
