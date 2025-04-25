@@ -100,3 +100,37 @@ h1 {
     color: #0c4485;
     transform: scale(1.2)
 }
+
+@media (max-width: 600px) {
+    .monitores-cantos {
+        position: static;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        margin-top: 30px;
+    }
+
+    .monitor {
+        width: 40vw; /* cada monitor ocupa cerca de 40% da largura */
+        position: relative; /* remove posicionamento absoluto */
+        margin: 0;
+    }
+
+    .adm,
+    .rh,
+    .financeiro,
+    .vendas {
+        top: auto;
+        left: auto;
+        right: auto;
+        bottom: auto;
+    }
+
+    body {
+        justify-content: flex-start;
+        padding-top: 60px;
+        background-size: cover;
+    }
+}
