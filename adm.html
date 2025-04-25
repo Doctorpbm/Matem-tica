@@ -26,6 +26,8 @@
             <h1>ADM</h1>
         </div>
 
+        <div class="menu-toggle">&#9776;</div>
+
         <div class="menu-links">
             <a href="index.html">Início</a>
             <a href="fases.html">Setores</a>
@@ -55,6 +57,16 @@
         </div>
         <button class="confirm-btn">Confirmar Resposta</button>
     </div>
+
+    <script>
+        const toggleBtn = document.querySelector(".menu-toggle");
+        const menuLinks = document.querySelector(".menu-links");
+      
+        toggleBtn.addEventListener("click", () => {
+          menuLinks.classList.toggle("show");
+        });
+      </script>
+      
 
     <script src="script.js"></script>
 </body>
