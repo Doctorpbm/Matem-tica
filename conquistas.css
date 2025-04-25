@@ -165,6 +165,65 @@ header {
     }
 }
 
+.feedback-message {
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.feedback-message.success {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.feedback-message.error {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.feedback-message.warning {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+.menu-toggle {
+    display: none;
+    font-size: 28px;
+    cursor: pointer;
+    color: rgba(0, 0, 0, 0.699);
+    z-index: 1100;
+}
+
+/* Esconde o menu por padrão em celular */
+@media (max-width: 600px) {
+    .menu-toggle {
+        display: block;
+    }
+
+    .menu-links {
+        display: none;
+        position: absolute;
+        top: 45px;
+        right: 0;
+        background-color: rgba(255, 255, 255, 0.95);
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+        padding: 10px 20px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .menu-links.show {
+        display: flex;
+    }
+
+    .menu-links a {
+        padding: 10px 0;
+        width: 100%;
+    }
+}
+
 .setor {
     margin-bottom: 35px; /* Aumenta o espaço entre os setores */
     padding: 20px;
