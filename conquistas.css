@@ -7,7 +7,7 @@
 
 
 body {
-    background-image: ;
+    background-image: url(imgs/sala1);
     background-size: cover; 
     background-repeat: no-repeat; 
     background-position: center;
@@ -70,6 +70,9 @@ header {
     color: #4a9eff ;
 }
 
+.alternatives {
+    padding-left: 20px;
+}
 
 .seta-topo-esquerda {
     display: flex;
@@ -112,6 +115,32 @@ header {
     margin-top: 10px;
 }
 
+/* Responsividade: tablets */
+@media (max-width: 768px) {
+    .menu-links {
+        flex-direction: column;
+        padding-right: 0;
+    }
+
+    .menu-links a {
+        margin-bottom: 10px;
+    }
+
+    .titulo {
+        font-size: 18px;
+    }
+
+    .question {
+        width: 90%;
+        margin: 80px auto 20px;
+        padding: 15px;
+    }
+
+    .seta-topo-esquerda {
+        top: 20px;
+        left: 20px;
+    }
+}
 
 /* Responsividade: celulares pequenos */
 @media (max-width: 480px) {
@@ -136,65 +165,6 @@ header {
 
     .menu-links a {
         font-size: 14px;
-    }
-}
-
-.feedback-message {
-    margin-top: 10px;
-    padding: 10px;
-    border-radius: 5px;
-    font-weight: bold;
-}
-
-.feedback-message.success {
-    background-color: #d4edda;
-    color: #155724;
-}
-
-.feedback-message.error {
-    background-color: #f8d7da;
-    color: #721c24;
-}
-
-.feedback-message.warning {
-    background-color: #fff3cd;
-    color: #856404;
-}
-
-.menu-toggle {
-    display: none;
-    font-size: 28px;
-    cursor: pointer;
-    color: rgba(0, 0, 0, 0.699);
-    z-index: 1100;
-}
-
-/* Esconde o menu por padrão em celular */
-@media (max-width: 600px) {
-    .menu-toggle {
-        display: block;
-    }
-
-    .menu-links {
-        display: none;
-        position: absolute;
-        top: 45px;
-        right: 0;
-        background-color: rgba(255, 255, 255, 0.95);
-        flex-direction: column;
-        align-items: flex-start;
-        width: 100%;
-        padding: 10px 20px;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-    }
-
-    .menu-links.show {
-        display: flex;
-    }
-
-    .menu-links a {
-        padding: 10px 0;
-        width: 100%;
     }
 }
 

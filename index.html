@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <link rel="icon" href="imgs/administracao.ico" type="imgs/administracao.ico">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Setor_Math</title>
@@ -11,10 +10,39 @@
         </style>
 </head>
 <body>
-    <div>
+
+    <!-- MODAL -->
+  <div class="modal">
+    <div class="modal-content">
+  
+      <!-- LOGIN FORM -->
+      <form id="loginForm" action="login.php" method="post">
+        <h2>LOGIN</h2>
+        <input type="text" name="logins" placeholder="LOGIN" required>
+        <input type="password" name="senha" placeholder="SENHA" required>
+        <input type="submit" value="ENTRAR">
+        <button type="button" class="link-btn" onclick="toggleForms()">Cadastrar novo usuário</button>
+      </form>
+  
+      <!-- CADASTRO FORM -->
+      <form id="cadastroForm" class="hidden" action="cadastro.php" method="post">
+        <h2>CADASTRO</h2>
+        <input type="text" name="logins" placeholder="NOVO LOGIN" required>
+        <input type="password" name="senha" placeholder="NOVA SENHA" required>
+        <input type="submit" value="CADASTRAR">
+        <button type="button" class="link-btn" onclick="toggleForms()">Já tem conta? Fazer login</button>
+      </form>
+  
+      </div>
+    </div>
+
+  </div>
+
+    <div class="container">
     <h1>Projeto de alunos brilhantes</h1>
     <a class="back-btn" href="fases.html">SETORES</a>
-    <a class="back-btn" href="Conquistas.html">CONQUISTAS</a>
+    <a class="back-btn" href="conquistas.html">CONQUISTAS</a>
+    <a class="back-btn" href="suporte.html">SUPORTE</a>
     </div>
     
     <footer> 
@@ -23,6 +51,15 @@
           </svg>
         2025 TIVE RAZÃO LTDA. Feito por alunos brilhantes para alunos brilhantes
     </footer>
+
+    <script>
+        function toggleForms() {
+          const login = document.getElementById('loginForm');
+          const cadastro = document.getElementById('cadastroForm');
+          login.classList.toggle('hidden');
+          cadastro.classList.toggle('hidden');
+        }
+      </script>
 </body>
 
 </html>

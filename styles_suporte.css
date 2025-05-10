@@ -1,0 +1,136 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body {
+    background-color: #ffffff;
+    background-size: cover; 
+    background-repeat: no-repeat; 
+    background-position: center center; 
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    height: 100vh; 
+    margin: 0; 
+    text-align: center;
+    flex-direction: column;
+    font-family: "Sarala", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+
+}
+
+header{
+    background-color: rgba(255, 255, 255, 0.726);
+    position: fixed;
+    width: 100%;
+    height: 35px;
+    top: 0;
+    backdrop-filter: blur(7px);
+    font-size: 20px;
+    color: rgba(0, 0, 0, 0.527);
+    justify-content: center;
+    align-items: center;
+}
+
+footer{
+    background-color: rgba(255, 255, 255, 0.726);
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 18px;
+    backdrop-filter: blur(7px);
+    border-top-left-radius: 45px;
+    border-top-right-radius: 45px;
+    font-size: 10px;
+    color: rgba(0, 0, 0, 0.527);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+h1 {
+    color: rgba(0, 0, 0, 0.863);
+    font-size: 40px;
+    border-radius: 13px;
+    margin-bottom: 30px ;  
+    width: 200px;
+    height: 40px;
+    font-family: "Sarala", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+}
+
+
+input {
+    background-color: #ffffff; 
+    border-color: #4a9eff;
+    color: rgba(0, 0, 0, 0.788);
+    padding: 10px 20px;
+    font-size: 13px;
+    border-radius: 13px;
+    margin: 10px 0;     
+    display: block;
+    width: 200px;
+    height: 40px;
+    padding: 10px;
+    text-align: center;
+    box-shadow: 2px;
+    font-family: "Sarala", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    text-align: left;
+}
+
+.mensagem{
+    width: 500px;
+    height: 150px;
+    border-radius: 20px;
+    text-align: start;
+}
+
+button {
+    border-radius: 13px;
+    background-color: rgb(255, 255, 255);
+    border-color: #ffffff;
+    box-shadow: rgba(0, 0, 0, 0.219);
+    width: 120px;
+    height: 30px;
+    font-family: "Sarala", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    cursor: pointer;
+    transition: box-shadow 0.2s, scale 0.1s, background-color 0.1s;
+    
+}
+
+button:hover{
+    box-shadow: black 0px 0px 2px;
+    scale: 2.0px;
+    background-color: #f3f3f3;
+}
+
+.seta-topo-esquerda {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 18px;
+    color: rgba(0, 0, 0, 0.781);
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform 0.1s ease-in-out, color 0.1s ease-in-out;
+    z-index: 1000; /* faz com que a seta fique no topo da página acima das imagens */
+    align-items: flex-end;
+    display: block;
+    justify-content: center;
+    
+}
+
+/* corzinha pra interação com a seta */
+.seta-topo-esquerda:hover {
+    color: #0c4485;
+    transform: scale(1.2)
+}

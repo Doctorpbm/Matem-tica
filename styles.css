@@ -6,8 +6,7 @@
 
 
 body {
-    background-image: url(imgs/meufundo.png);
-    background-image: url(imgs/sala2.jfif);
+   background-color: #020613;
     background-size: cover; 
     background-repeat: no-repeat; 
     background-position: center center; 
@@ -31,7 +30,6 @@ header{
     height: 35px;
     top: 0;
     backdrop-filter: blur(7px);
-
     font-size: 20px;
     color: rgba(0, 0, 0, 0.527);
     justify-content: center;
@@ -54,13 +52,15 @@ footer{
     z-index: 1000;
 }
 
-div{
-    background-color: rgba(255, 255, 255, 0.192);
+.container{
+    background-color: rgba(22, 22, 23, 0.13);
     padding: 100px;
     border-radius: 55px;
-    backdrop-filter: blur(15px);
+    backdrop-filter: blur(500px);
     align-self: center;
-
+    border-color: #86868b;
+    border-style: solid;
+    border-width: 1px;
 }
 
 h1 {
@@ -68,13 +68,13 @@ h1 {
     text-align: center;
     font-size: 2em;
     margin-bottom: 20px;
-    color: #000000f3;
+    color: #ffffff88;
 }
 
 
 a {
-    background-color: #0c4485; 
-    color: rgb(255, 255, 255);
+    background-color: #e6e6e6; 
+    color: #575757;
     padding: 10px 20px;
     font-size: 16px;
     border: none;
@@ -100,3 +100,64 @@ a {
 }
 
 
+
+.modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(10, 6, 132, 0.5);
+    backdrop-filter: blur(6px);
+  }
+
+  .modal-content {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    width: 300px;
+   
+    text-align: center;
+    animation: fadeIn 0.3s ease;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .modal-content input {
+    width: 90%;
+    padding: 10px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+
+  .modal-content input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+  }
+
+  .modal-content input[type="submit"]:hover {
+    background-color: #45a049;
+  }
+
+  .link-btn {
+    background: none;
+    border: none;
+    color: #007BFF;
+    cursor: pointer;
+    margin-top: 10px;
+    text-decoration: underline;
+  }
+
+  .hidden {
+    display: none;
+  }
