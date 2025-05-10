@@ -1,42 +1,66 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+session_start();
+
 $servername = "database-2.cdku2ia0sqoy.us-east-2.rds.amazonaws.com";
-$username = "admin"; // substitua aqui
-$password = "xrl8melhoralien";   // substitua aqui
-$dbname = "questionsmath";          // nome do seu banco
+$username = "admin";
+$password = "xrl8melhoralien";
+$dbname = "questionsmath";
 
-// Cria a conexão
+header('Content-Type: application/json');
+
 $conn = new mysqli($servername, $username, $password, $dbname);
-
-// Verifica a conexão
 if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+    echo json_encode(['success' => false, 'message' => 'Falha na conexão.']);
+    exit();
 }
-echo "Connected successfully";
 
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    if (isset($_POST['logins']) && isset($_POST['senha'])) {
+        $login = htmlspecialchars($_POST['logins']);
+        $senha = htmlspecialchars($_POST['senha']);
 
-$login = $_POST['logins'];
-$senha = $_POST['senha'];
+        // Busca o hash da senha do banco de dados
+        $sql = "SELECT senha FROM contas WHERE logins = ?";
+        $stmt = $conn->prepare($sql);
 
-$sql = "SELECT * FROM usuarios WHERE login = ? AND senha = ?";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("ss", $login, $senha);
-$stmt->execute();
-$result = $stmt->get_result();
-
-if ($result->num_rows > 0) {
-    $_SESSION['usuario'] = $login;
-    echo "<script>
-        function toggleForms() {
-          const login = document.getElementById('loginForm');
-          const cadastro = document.getElementById('cadastroForm');
-          login.classList.toggle('hidden');
-          cadastro.classList.toggle('hidden');
+        if (!$stmt) {
+            echo json_encode(['success' => false, 'message' => 'Erro ao preparar a consulta.']);
+            exit();
         }
-      </script>";
+
+        $stmt->bind_param("s", $login);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result->num_rows > 0) {
+            // Recupera o hash da senha
+            $row = $result->fetch_assoc();
+            $hash_senha = $row['senha'];
+
+            // Verifica se a senha fornecida corresponde ao hash
+            if (password_verify($senha, $hash_senha)) {
+                // Senha correta
+                $_SESSION['usuario'] = $login;
+                echo json_encode(['success' => true]);
+            } else {
+                // Senha incorreta
+                echo json_encode(['success' => false, 'message' => 'Senha inválida.']);
+            }
+        } else {
+            // Usuário não encontrado
+            echo json_encode(['success' => false, 'message' => 'Login inválido.']);
+        }
+
+        $stmt->close();
+    } else {
+        echo json_encode(['success' => false, 'message' => 'Campos obrigatórios ausentes.']);
+    }
 } else {
-    echo "Login inválido.";
+    echo json_encode(['success' => false, 'message' => 'Requisição inválida.']);
 }
+
 
 $conn->close();
-
 ?>

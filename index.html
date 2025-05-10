@@ -5,61 +5,144 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Setor_Math</title>
     <link rel="stylesheet" href="styles.css">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Sarala:wght@400;700&family=Special+Gothic+Expanded+One&display=swap');
-        </style>
+    <link href="https://fonts.googleapis.com/css2?family=Sarala:wght@400;700&family=Special+Gothic+Expanded+One&display=swap" rel="stylesheet">
 </head>
 <body>
 
     <!-- MODAL -->
-  <div class="modal">
-    <div class="modal-content">
+    <div class="modal" id="modal">
+        <div class="modal-content">
   
-      <!-- LOGIN FORM -->
-      <form id="loginForm" action="login.php" method="post">
-        <h2>LOGIN</h2>
-        <input type="text" name="logins" placeholder="LOGIN" required>
-        <input type="password" name="senha" placeholder="SENHA" required>
-        <input type="submit" value="ENTRAR">
-        <button type="button" class="link-btn" onclick="toggleForms()">Cadastrar novo usuário</button>
-      </form>
+            <!-- LOGIN FORM -->
+            <form id="loginForm" action="login.php" method="post">
+                <h2>LOGIN</h2>
+                <input type="text" name="logins" placeholder="LOGIN" required>
+                <input type="password" name="senha" placeholder="SENHA" required>
+                <input type="submit" value="ENTRAR">
+                <button type="button" class="link-btn" onclick="toggleForms()">Cadastre-se</button>
+            </form>
   
-      <!-- CADASTRO FORM -->
-      <form id="cadastroForm" class="hidden" action="cadastro.php" method="post">
-        <h2>CADASTRO</h2>
-        <input type="text" name="logins" placeholder="NOVO LOGIN" required>
-        <input type="password" name="senha" placeholder="NOVA SENHA" required>
-        <input type="submit" value="CADASTRAR">
-        <button type="button" class="link-btn" onclick="toggleForms()">Já tem conta? Fazer login</button>
-      </form>
+            <!-- CADASTRO FORM -->
+            <form id="cadastroForm" class="hidden" action="cadastro.php" method="post">
+                <h2>CADASTRO</h2>
+                <input type="text" name="logins" placeholder="NOVO LOGIN" required>
+                <input type="password" name="senha" placeholder="NOVA SENHA" required>
+                <input type="submit" value="CADASTRAR">
+                <button type="button" class="link-btn" onclick="toggleForms()">Já tem conta? Fazer login</button>
+            </form>
   
-      </div>
+        </div>
     </div>
 
-  </div>
-
+    <!-- CONTEÚDO PRINCIPAL -->
     <div class="container">
-    <h1>Projeto de alunos brilhantes</h1>
-    <a class="back-btn" href="fases.html">SETORES</a>
-    <a class="back-btn" href="conquistas.html">CONQUISTAS</a>
-    <a class="back-btn" href="suporte.html">SUPORTE</a>
+        <h1>Projeto de alunos brilhantes</h1>
+        <a class="back-btn" href="fases.html">SETORES</a>
+        <a class="back-btn" href="conquistas.html">CONQUISTAS</a>
+        <a class="back-btn" href="suporte.html">SUPORTE</a>
+        <a class="back-btn" id="logoutBtn">Sair</a>
     </div>
-    
+
     <footer> 
         <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="currentColor" class="bi bi-c-circle" viewBox="0 0 16 16">
             <path d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.146 4.992c-1.212 0-1.927.92-1.927 2.502v1.06c0 1.571.703 2.462 1.927 2.462.979 0 1.641-.586 1.729-1.418h1.295v.093c-.1 1.448-1.354 2.467-3.03 2.467-2.091 0-3.269-1.336-3.269-3.603V7.482c0-2.261 1.201-3.638 3.27-3.638 1.681 0 2.935 1.054 3.029 2.572v.088H9.875c-.088-.879-.768-1.512-1.729-1.512"/>
-          </svg>
+        </svg>
         2025 TIVE RAZÃO LTDA. Feito por alunos brilhantes para alunos brilhantes
     </footer>
 
     <script>
-        function toggleForms() {
-          const login = document.getElementById('loginForm');
-          const cadastro = document.getElementById('cadastroForm');
-          login.classList.toggle('hidden');
-          cadastro.classList.toggle('hidden');
-        }
-      </script>
-</body>
+        const modal = document.getElementById('modal');
+        const logoutBtn = document.getElementById('logoutBtn');
 
+        // Verifica se o usuário está logado ao carregar a página
+        window.onload = function () {
+            fetch('auth.php')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.logado === true) {
+                        modal.style.display = 'none';
+                        logoutBtn.style.display = 'block';
+                    } else {
+                        modal.style.display = 'flex';
+                        logoutBtn.style.display = 'none';
+                    }
+                })
+                .catch(error => {
+                    console.error('Erro ao verificar login:', error);
+                    modal.style.display = 'flex';
+                    logoutBtn.style.display = 'none';
+                });
+        };
+
+        // Envia login via AJAX
+        const loginForm = document.getElementById('loginForm');
+        loginForm.addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            const formData = new FormData(loginForm);
+
+            fetch('login.php', {
+                method: 'POST',
+                body: formData
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        modal.style.display = 'none';
+                        logoutBtn.style.display = 'block';
+                    } else {
+                        alert(data.message || 'Erro no login.');
+                    }
+                });
+        });
+
+        // Envia cadastro via AJAX
+        const cadastroForm = document.getElementById('cadastroForm');
+        cadastroForm.addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            const formData = new FormData(cadastroForm);
+
+            fetch('cadastro.php', {
+                method: 'POST',
+                body: formData
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert('Cadastro realizado com sucesso!');
+                        toggleForms(); // volta pro login
+                    } else {
+                        alert(data.message || 'Erro ao cadastrar.');
+                    }
+                })
+                .catch(() => {
+                    alert('Erro de conexão ao cadastrar.');
+                });
+        });
+
+        // Lógica do botão de logout
+        logoutBtn.addEventListener('click', function () {
+            fetch('logout.php')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        modal.style.display = 'flex';
+                        logoutBtn.style.display = 'none';
+                    } else {
+                        alert('Erro ao deslogar.');
+                    }
+                });
+        });
+
+        function toggleForms() {
+            const loginForm = document.getElementById('loginForm');
+            const cadastroForm = document.getElementById('cadastroForm');
+
+            loginForm.classList.toggle('hidden');
+            cadastroForm.classList.toggle('hidden');
+        }
+    </script>
+
+</body>
 </html>
