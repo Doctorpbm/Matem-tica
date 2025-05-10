@@ -1,0 +1,5 @@
+{
+  "require": {
+    "brielov/vercel-php": "^0.5.1"
+  }
+}
