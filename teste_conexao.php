@@ -1,4 +1,6 @@
 <?php
+
+
 $servername = "database-2.cdku2ia0sqoy.us-east-2.rds.amazonaws.com";
 $username = "admin";
 $password = "xrl8melhoralien";
